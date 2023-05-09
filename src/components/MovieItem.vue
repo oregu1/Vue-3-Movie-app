@@ -45,7 +45,6 @@ const props = defineProps({
         }
     }
 
-
     .movie-title {
         width: 100%;
         max-height: 40px;
