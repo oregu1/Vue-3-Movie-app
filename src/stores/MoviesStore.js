@@ -2,18 +2,7 @@ import { ref, computed } from "vue";
 import { defineStore } from "pinia";
 
 export const useMoviesStore = defineStore("MoviesStore", () => {
-  const movies = ref([
-    // {
-    //   id: 1,
-    //   title: "Batman",
-    //   year: 2020,
-    // },
-    // {
-    //   id: 2,
-    //   title: "Spider-man",
-    //   year: 2003,
-    // },
-  ]);
+  const movies = ref([]);
 
   //ACTIONS
   const getPopularMovies = async () => {
