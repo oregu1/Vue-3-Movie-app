@@ -8,13 +8,11 @@ const props = defineProps({
 </script>
 
 <template>
-    <div class="movie-item">
+    <div v-if="movie !== null" class="movie-item">
         <div class="movie-title">
             <h3>{{ movie.title }}</h3>
         </div>
-        <div class="movie-poster">
-            <img :src="movie.image" alt="" />
-        </div>
+        <div class="movie-poster" :style="`background-image: url(${movie.image})`"></div>
         <div class="movie-info">
             <span v-if="movie.imDbRating" class="movie-rating" :class="{
                 green: movie.imDbRating >= 8,
@@ -26,6 +24,7 @@ const props = defineProps({
             <span class="movie-year">{{ movie.year }}</span>
         </div>
     </div>
+    <p v-else>Ooops...there is no any movie</p>
 </template>
 
 <style lang="scss" scoped>
@@ -33,26 +32,30 @@ const props = defineProps({
     max-width: 250px;
     width: 100%;
 
-    min-height: 380px;
+    min-height: 340px;
+    max-height: 400px;
 
-    background-color: var(--black);
+    background-color: var(--movie-item-color);
     color: var(--white);
 
     padding: 10px;
     overflow: hidden;
 
+    border-radius: 10px;
+
     .movie-poster {
-        max-height: 300px;
+        max-height: 260px;
         height: 100%;
 
-        img {
-            width: 100%;
-        }
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+
     }
 
     .movie-title {
         width: 100%;
-        max-height: 40px;
+        max-height: 30px;
         height: 100%;
 
         display: flex;
@@ -71,6 +74,7 @@ const props = defineProps({
     .movie-info {
         display: flex;
         justify-content: space-between;
+        margin-top: 10px;
 
         .movie-rating {
             font-weight: 700;

@@ -15,7 +15,7 @@ const search = ref('');
     <form class="search-form" @submit.prevent="searchStore.searchMovies(search)">
         <input type="text" placeholder="Search a movie" v-model="search">
     </form>
-    
+    <p class="notification" v-if="searchStore.movies.length === 0">Oooops...it looks like you didn't look for any movies</p>
     <div class="movies">
         <MovieItem v-for="movie in searchStore.movies" :key="movie.id" :movie="movie" />
     </div>
@@ -35,9 +35,24 @@ form.search-form {
         border: 1px solid var(--black);
         outline: none;
 
+        color: var(--black);
+
         &:focus {
             border-color: var(--yellow);
         }
+
+        &::placeholder {
+            color: var(--black);
+        }
     }
+}
+
+.notification {
+
+    font-weight: 300;
+    font-size: 20px;
+
+    text-align: center;
+    color: rgba($color: #fff, $alpha: .5);
 }
 </style>
