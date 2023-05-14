@@ -20,14 +20,14 @@ onMounted(() => {
     <header class="header">
         <div class="logo-section">
             <div class="logo">
-                <img src="../assets/img/movie-logo.png" alt="logo"/>
+                <img src="../assets/img/movie-logo.png" alt="logo" />
             </div>
             <p>Movie-app</p>
         </div>
         <nav class="nav">
-            <router-link to="">Home</router-link>
-            <router-link to="">Top 250 movies</router-link>
-            <router-link to="">Most popular</router-link>
+            <router-link class="nav-links" to="/">Home</router-link>
+            <router-link class="nav-links" to="">Top 250 movies</router-link>
+            <router-link class="nav-links" to="#most-popular-movies">Most popular</router-link>
         </nav>
     </header>
     <div class="wrapper">
@@ -37,7 +37,7 @@ onMounted(() => {
         </div>
         <div class="most-popular-movies">
             <h2>Most Popular Movies</h2>
-            <div class="movies">
+            <div class="movies" id="most-popular-movies">
                 <MovieItem v-for="movie in moviesStore.movies" :key="movie.id" :movie="movie" />
             </div>
         </div>
@@ -80,11 +80,24 @@ onMounted(() => {
         }
     }
 
-    .nav>a {
+    .nav>a.nav-links {
         margin-right: 10px;
+        padding: 5px 10px;
+
+        text-decoration: none;
+        
+        color: var(--white);
+        background-color: var(--red);
+
+        border-radius: 5px;
 
         &:last-child {
             margin-right: 0;
+        }
+
+        &:hover {
+            color: var(--black);
+            background-color: var(--yellow);
         }
     }
 }

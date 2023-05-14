@@ -1,19 +1,21 @@
 <script setup>
+import { Icon } from '@iconify/vue';
 const props = defineProps({
     movie: {
         type: Object,
         required: true
     },
 });
+
+const handleClick = () => {
+    alert('Soon here will appear more content. Be patient :)')
+};
 </script>
 
 <template>
     <div v-if="movie !== null" class="movie-item">
         <div class="movie-title">
             <h3>{{ movie.title }}</h3>
-        </div>
-        <div class="movie-poster" :style="`background-image: url(${movie.image})`"></div>
-        <div class="movie-info">
             <span v-if="movie.imDbRating" class="movie-rating" :class="{
                 green: movie.imDbRating >= 8,
                 yellow: movie.imDbRating < 8 && movie.imDbRating >= 5,
@@ -21,6 +23,13 @@ const props = defineProps({
             }">
                 {{ movie.imDbRating }}
             </span>
+        </div>
+        <div class="movie-poster" :style="`background-image: url(${movie.image})`"></div>
+        <div class="movie-info">
+            <button class="movie-trailer-btn btn" @click="handleClick">
+                <Icon icon="material-symbols:play-circle-outline-rounded" width="24" height="24"/>
+                <p>Trailer</p>
+            </button>
             <span class="movie-year">{{ movie.year }}</span>
         </div>
     </div>
@@ -60,6 +69,7 @@ const props = defineProps({
 
         display: flex;
         align-items: center;
+        justify-content: space-between;
 
         h3 {
             font-size: 14px;
@@ -69,12 +79,6 @@ const props = defineProps({
             overflow: hidden;
             white-space: nowrap;
         }
-    }
-
-    .movie-info {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 10px;
 
         .movie-rating {
             font-weight: 700;
@@ -91,6 +95,47 @@ const props = defineProps({
                 color: var(--red);
             }
         }
+    }
+
+    .movie-info {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+
+       .btn {
+        background-color: transparent;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        color: var(--yellow);
+
+        padding:0 5px;
+
+        cursor: pointer;
+
+        &:hover {
+            background-color: var(--yellow);
+            color: var(--black);
+            
+
+            svg {
+                fill: var(--black);
+            }
+
+            p {
+                font-weight: 500;
+            }
+        }
+
+        p {
+            margin-left: 5px;
+        }
+       }
     }
 }
 </style>
