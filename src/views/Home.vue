@@ -45,6 +45,34 @@ onMounted(() => {
 </template>
 
 <style lang="scss">
+body {
+    background-color: var(--black);
+}
+
+.wrapper {
+    max-width: 1280px;
+    width: 100%;
+    margin: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 0 15px;
+}
+
+.movies {
+    // display: flex;
+    // flex-wrap: wrap;
+    // justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(200px, 1fr));
+    grid-gap: 5px;
+
+    border-bottom: 1px solid rgba($color: #ffffff, $alpha: .3);
+
+    padding-bottom: 10px;
+}
+
 .header {
     display: flex;
     align-items: center;
@@ -85,9 +113,9 @@ onMounted(() => {
         padding: 5px 10px;
 
         text-decoration: none;
-        
+
         color: var(--white);
-        background-color: var(--red);
+        background-color: var(--black);
 
         border-radius: 5px;
 
@@ -96,30 +124,8 @@ onMounted(() => {
         }
 
         &:hover {
-            color: var(--black);
-            background-color: var(--yellow);
+            color: var(--yellow);
         }
     }
-}
-
-.wrapper {
-    max-width: 1280px;
-    width: 100%;
-    margin: auto;
-
-    display: flex;
-    flex-direction: column;
-
-    padding: 0 15px;
-}
-
-.movies {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-gap: 5px;
-
-    border-bottom: 1px solid rgba($color: #ffffff, $alpha: .3);
-
-    padding-bottom: 10px;
 }
 </style>

@@ -38,11 +38,13 @@ const handleClick = () => {
 
 <style lang="scss" scoped>
 .movie-item {
-    max-width: 250px;
+    max-width: 200px;
     width: 100%;
+    // margin: 5px;
 
     min-height: 340px;
-    max-height: 400px;
+    //height: 100%;
+    // max-height: 400px;
 
     background-color: var(--movie-item-color);
     color: var(--white);
@@ -53,12 +55,13 @@ const handleClick = () => {
     border-radius: 10px;
 
     .movie-poster {
+        min-height: 150px;
         max-height: 260px;
         height: 100%;
 
         background-repeat: no-repeat;
         background-position: center center;
-        background-size: cover;
+        background-size: contain;
 
     }
 
@@ -74,6 +77,7 @@ const handleClick = () => {
         h3 {
             font-size: 14px;
             font-weight: 500;
+            max-width: 70%;
 
             text-overflow: ellipsis;
             overflow: hidden;
@@ -114,7 +118,7 @@ const handleClick = () => {
 
         color: var(--yellow);
 
-        padding:0 5px;
+        padding: 0 5px;
 
         cursor: pointer;
 
