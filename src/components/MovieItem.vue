@@ -1,5 +1,9 @@
 <script setup>
 import { Icon } from '@iconify/vue';
+import { defineEmits } from 'vue';
+
+const emit = defineEmits(["get-trailer-id"]);
+//PROPS
 const props = defineProps({
     movie: {
         type: Object,
@@ -7,8 +11,10 @@ const props = defineProps({
     },
 });
 
-const handleClick = () => {
-    alert('Soon here will appear more content. Be patient :)')
+//EMITS
+const getTrailerByID = (id) => {
+    //console.log(id);
+    emit('get-trailer-id', id);
 };
 </script>
 
@@ -26,12 +32,14 @@ const handleClick = () => {
         </div>
         <div class="movie-poster" :style="`background-image: url(${movie.image})`"></div>
         <div class="movie-info">
-            <button class="movie-trailer-btn btn" @click="handleClick">
+            <button class="movie-trailer-btn btn" @click="getTrailerByID(movie.id)">
                 <Icon icon="material-symbols:play-circle-outline-rounded" width="24" height="24"/>
                 <p>Trailer</p>
             </button>
             <span class="movie-year">{{ movie.year }}</span>
         </div>
+
+        
     </div>
     <p v-else>Ooops...there is no any movie</p>
 </template>
@@ -40,11 +48,8 @@ const handleClick = () => {
 .movie-item {
     max-width: 200px;
     width: 100%;
-    // margin: 5px;
 
     min-height: 340px;
-    //height: 100%;
-    // max-height: 400px;
 
     background-color: var(--movie-item-color);
     color: var(--white);

@@ -5,11 +5,17 @@ import { useMoviesStore } from '../stores/MoviesStore';
 //REFS
 import { ref, computed, onMounted } from 'vue';
 
+//COMPONENTS
 import MovieItem from '../components/MovieItem.vue';
 import SearchMovie from '../components/SearchMovie.vue';
+import Trailer from '../components/Trailer.vue';
 
 //STORES
 const moviesStore = useMoviesStore();
+
+const getTrailerID = (movieID) => {
+    console.log(movieID);
+};
 
 onMounted(() => {
     moviesStore.getPopularMovies();
@@ -38,15 +44,26 @@ onMounted(() => {
         <div class="most-popular-movies">
             <h2>Most Popular Movies</h2>
             <div class="movies" id="most-popular-movies">
-                <MovieItem v-for="movie in moviesStore.movies" :key="movie.id" :movie="movie" />
+                <MovieItem 
+                    v-for="movie in moviesStore.movies" 
+                    :key="movie.id" 
+                    :movie="movie" 
+                />
             </div>
         </div>
+        <Trailer 
+            v-for="movie in moviesStore.movies"
+            :key="movie.id"
+            :movieID="movie.id"
+            @get-trailer-id="getTrailerID"
+        />
     </div>
 </template>
 
 <style lang="scss">
 body {
     background-color: var(--black);
+    position: relative;
 }
 
 .wrapper {
@@ -61,9 +78,6 @@ body {
 }
 
 .movies {
-    // display: flex;
-    // flex-wrap: wrap;
-    // justify-content: center;
     display: grid;
     grid-template-columns: repeat(6, minmax(200px, 1fr));
     grid-gap: 5px;
